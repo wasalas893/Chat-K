@@ -38,7 +38,7 @@ app.use('/v1', routes);
 
 // Base URL test endpoint to see if API is running
 app.get('/', (req, res) => {
-  res.json({ message: 'Chat API is ALIVE!' })
+  res.json({ message: 'Chat API is connect!' })
 });
 
 /*||||||||||||||||SOCKET|||||||||||||||||||||||*/
