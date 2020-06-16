@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,5 +49,18 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    //login btn
+    fun loginBtnNavClicked(view:View){
+
+    }
+    //add chenal
+    fun addChannelClicked(view: View){
+
+    }
+    //send message
+    fun sendMsgBtnClicked(view: View){
+
     }
 }
