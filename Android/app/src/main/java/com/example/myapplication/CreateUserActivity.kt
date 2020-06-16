@@ -1,9 +1,12 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.myapplication.R
+import com.example.myapplication.Services.AuthService
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -47,7 +50,12 @@ class CreateUserActivity : AppCompatActivity() {
     //create user btn
     fun createUserClicked(view: View){
 
-    }
+        AuthService.registerUser(this,"wasasss@gmail.com","123456"){complete->
+            if (complete){
+
+            }
+        }
+   }
 
 }
 
