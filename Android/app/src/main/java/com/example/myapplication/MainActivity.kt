@@ -1,6 +1,9 @@
 package com.example.myapplication
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,7 +15,12 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.myapplication.R
+import com.example.myapplication.Services.AuthService
+import com.example.myapplication.Services.UserDataService
+import com.example.myapplication.Utilities.BROADCAST_USER_DATA_CHANGE
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +39,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
@@ -45,6 +52,31 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
+            IntentFilter(BROADCAST_USER_DATA_CHANGE)
+        )
+
+
+
+
+
+    }
+
+    private val userDataChangeReceiver=object:BroadcastReceiver(){
+        override fun onReceive(context:Context?, intent:Intent?) {
+            if(AuthService.isLoggedIn){
+                userNameNavHeader.text=UserDataService.name
+                userEmailNavHeader.text=UserDataService.email
+                val resoureId=resources.getIdentifier(UserDataService.avatarName,"drawable",
+                packageName)
+                userImageNavHeader.setImageResource(resoureId)
+               // userImageNavHeader.setBackgroundColor(UserDataService.returnAvatarColor(UserDataService.avatarColor))
+                loginBtnNavHeader.text="Logout"
+            }
+
+        }
     }
 
 
