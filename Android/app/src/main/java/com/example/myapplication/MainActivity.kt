@@ -20,13 +20,20 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.myapplication.Model.Channel
 import com.example.myapplication.R
 import com.example.myapplication.Services.AuthService
+import com.example.myapplication.Services.MessageService
 import com.example.myapplication.Services.UserDataService
 import com.example.myapplication.Utilities.BROADCAST_USER_DATA_CHANGE
+import com.example.myapplication.Utilities.SOCKET_URL
+import io.socket.client.IO
+import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
+
+     val socket=IO.socket(SOCKET_URL)
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -35,7 +42,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
+        socket.connect()
+        socket.on("channelCreated",onNewChannel)
 
 
 
@@ -59,14 +67,28 @@ class MainActivity : AppCompatActivity() {
         hidekeyboard()
 
 
+
+
+
+
+
+
+    }
+
+
+    override fun onResume() {
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
             IntentFilter(BROADCAST_USER_DATA_CHANGE)
         )
 
+        super.onResume()
+    }
 
 
-
-
+    override fun onDestroy() {
+        socket.disconnect()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(userDataChangeReceiver)
+        super.onDestroy()
     }
 
     private val userDataChangeReceiver=object:BroadcastReceiver(){
@@ -121,6 +143,7 @@ class MainActivity : AppCompatActivity() {
                      val channelName=nameTextFiled.text.toString()
                      val channelDesc=descTextField.text.toString()
                      //create channel with the channel name and description
+                     socket.emit("newChannel",channelName,channelDesc)
 
 
 
@@ -138,6 +161,20 @@ class MainActivity : AppCompatActivity() {
     //send message
     fun sendMsgBtnClicked(view: View){
         hidekeyboard()
+
+    }
+    private  val onNewChannel=Emitter.Listener { args ->
+        runOnUiThread {
+            val channelName=args[0] as String
+            val channelDescription=args[1] as String
+            val channelId=args[2] as String
+
+            val newChannel=Channel(channelName,channelDescription,channelId)
+            MessageService.channels.add(newChannel)
+            println(newChannel.name)
+            println(newChannel.description)
+            println(newChannel.id)
+        }
 
     }
     fun hidekeyboard(){
