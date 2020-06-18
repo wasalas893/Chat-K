@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.myapplication.R
 import com.example.myapplication.Services.AuthService
@@ -105,6 +106,21 @@ class MainActivity : AppCompatActivity() {
     }
     //add chenal
     fun addChannelClicked(view: View){
+        if(AuthService.isLoggedIn){
+            val builder=AlertDialog.Builder(this)
+            val dialogView=layoutInflater.inflate(R.layout.add_channel_dialog,null)
+
+             builder.setView(dialogView)
+                 .setPositiveButton("Add"){dialogInterface, i ->
+
+
+                 }
+                 .setNegativeButton("Cancel"){dialogInterface, i ->
+                     
+                 }
+
+
+        }
 
     }
     //send message
