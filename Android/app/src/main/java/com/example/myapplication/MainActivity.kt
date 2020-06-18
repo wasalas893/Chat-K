@@ -16,6 +16,8 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.myapplication.R
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        hidekeyboard()
 
 
         LocalBroadcastManager.getInstance(this).registerReceiver(userDataChangeReceiver,
@@ -112,12 +115,21 @@ class MainActivity : AppCompatActivity() {
 
              builder.setView(dialogView)
                  .setPositiveButton("Add"){dialogInterface, i ->
+                 //add button
+                     val nameTextFiled=dialogView.findViewById<EditText>(R.id.addChannelNameText)
+                     val descTextField=dialogView.findViewById<EditText>(R.id.addChannelDescText)
+                     val channelName=nameTextFiled.text.toString()
+                     val channelDesc=descTextField.text.toString()
+                     //create channel with the channel name and description
+
 
 
                  }
                  .setNegativeButton("Cancel"){dialogInterface, i ->
-                     
+                  //cencel butn
+
                  }
+                 .show()
 
 
         }
@@ -125,6 +137,13 @@ class MainActivity : AppCompatActivity() {
     }
     //send message
     fun sendMsgBtnClicked(view: View){
+        hidekeyboard()
 
+    }
+    fun hidekeyboard(){
+        val inputManager=getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if(inputManager.isAcceptingText){
+            inputManager.hideSoftInputFromWindow(currentFocus?.windowToken,0)
+        }
     }
 }
