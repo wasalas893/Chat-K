@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 val resoureId=resources.getIdentifier(UserDataService.avatarName,"drawable",
                 packageName)
                 userImageNavHeader.setImageResource(resoureId)
-               // userImageNavHeader.setBackgroundColor(UserDataService.returnAvatarColor(UserDataService.avatarColor))
+                // userImageNavHeader.setBackgroundColor(UserDataService.returnAvatarColor(UserDataService.avatarColor))
                 loginBtnNavHeader.text="Logout"
             }
 
@@ -88,8 +89,18 @@ class MainActivity : AppCompatActivity() {
 
     //login btn
     fun loginBtnNavClicked(view:View){
-        val loginIntent=Intent(this, LoginActivity::class.java)
-        startActivity(loginIntent)
+        if(AuthService.isLoggedIn){
+            //logout
+       UserDataService.logout()
+            userNameNavHeader.text="Login"
+            userEmailNavHeader.text=""
+            userImageNavHeader.setImageResource(R.drawable.profiledefault)
+            userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)
+            loginBtnNavHeader.text="Login"
+        }else{
+            val loginIntent=Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
 
     }
     //add chenal
