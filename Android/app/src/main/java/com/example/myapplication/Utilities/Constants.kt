@@ -10,6 +10,8 @@ const val URL_CREATE_USER="${BASE_URL}user/add"
 const val URL_GET_USER="${BASE_URL}user/byEmail/"
 //chenal
 const val URL_GET_CHANNELS="${BASE_URL}channel/"
+//all message
+const val URL_GET_MESSAGES="${BASE_URL}message/byChannel/"
 
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE="BROADCAST_USER_DATA_CHANGE"
