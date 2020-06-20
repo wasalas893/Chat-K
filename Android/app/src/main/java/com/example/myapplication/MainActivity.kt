@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 val resoureId=resources.getIdentifier(UserDataService.avatarName,"drawable",
                 packageName)
                 userImageNavHeader.setImageResource(resoureId)
-               // userImageNavHeader.setBackgroundColor(UserDataService.returnAvatarColor(UserDataService.avatarColor))
+               
                 loginBtnNavHeader.text="Logout"
 
                 MessageService.getChannels{complete->
