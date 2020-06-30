@@ -11,74 +11,62 @@
 
     <ImageView
         android:id="@+id/userImageNavHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/nav_header_desc"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="12dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintBottom_toTopOf="@+id/loginBtnNavHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/profiledefault"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/profiledefault" />
 
     <TextView
         android:id="@+id/userNameNavHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.791"
-        tools:ignore="MissingConstraints"
-        tools:text="Sunnada" />
+        app:layout_constraintStart_toEndOf="@+id/userImageNavHeader"
+        app:layout_constraintTop_toTopOf="@+id/userImageNavHeader"
+        tools:text="Sunanda" />
 
     <TextView
         android:id="@+id/userEmailNavHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503"
-        tools:ignore="MissingConstraints"
-        tools:text="waslas893@gmail.com" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintStart_toEndOf="@+id/userImageNavHeader"
+        app:layout_constraintTop_toBottomOf="@+id/userNameNavHeader"
+        tools:text="Sunanda@gmail.com" />
 
     <Button
         android:id="@+id/loginBtnNavHeader"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
         android:background="@android:color/transparent"
         android:onClick="loginBtnNavClicked"
         android:text="Login"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/addChannelBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:onClick="addChannelClicked"
+        android:padding="5dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89"
         app:srcCompat="@drawable/addchannelbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
