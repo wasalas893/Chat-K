@@ -16,6 +16,7 @@ import java.util.*
 
 class CreateUserActivity : AppCompatActivity() {
 
+
     var userAvatar="profileDefault"
     var avatarColor="[0.5,0.5,0.5,1]"
 
@@ -24,6 +25,7 @@ class CreateUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_user)
         createSpinner.visibility=View.INVISIBLE
     }
+
     //user avatar
     fun genarateUserAvatar(view: View){
         val random=Random()
