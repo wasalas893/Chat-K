@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
@@ -36,25 +37,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-            android:id="@+id/messageTextField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="message...."
-            android:inputType="textMultiLine"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.363"
-            app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/messageTextField"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="message...."
+        android:background="@android:color/white"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/sendMessageBtn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Send"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_username"
+
         android:onClick="sendMsgBtnClicked"
         android:tint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
